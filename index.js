@@ -35,7 +35,7 @@ app.get("/blogs/:id", (req, res) => {
 });
 
 app.post("/blogs", (req, res) => {
-	const requiredFields = ["tittle", "content", "author"];
+	const requiredFields = ["title", "content", "author"];
 	for (let i=0; i<requiredFields.length; i++) {
 		const field = requiredFields[i];
 		if (!(field in req.body)) {
@@ -46,7 +46,7 @@ app.post("/blogs", (req, res) => {
 	}
 
 	BlogPosts.create({
-		tittle: req.body.tittle,
+		title: req.body.title,
 		content: req.body.content,
 		author: req.body.author
 	})
@@ -67,7 +67,7 @@ app.put("/blogs/:id", (req,res) => {
 	}
 
 	const toUpdate = {};
-	const updateableFields = ["tittle", "content", "author"];
+	const updateableFields = ["title", "content", "author"];
 
 	updateableFields.forEach(field => {
 		if (field in req.body) {

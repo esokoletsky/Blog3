@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 
 const blogsSchema = mongoose.Schema({
-	tittle: { type: String, required: true},
+	title: { type: String, required: true},
 	content: { type: String, required: true},
 	author: {
 		firstName: String,
@@ -18,12 +18,12 @@ blogsSchema.virtual("fullName").get(function() {
 blogsSchema.methods.serialize = function() {
 	return {
 		id: this._id,
-		tittle: this.tittle,
+		title: this.title,
 		content: this.content,
-		author: this.author
+		author: this.fullName
 	};
 }; //Why semicolon
 
-const BlogPosts = mongoose.model("BlogPosts", blogsSchema);
+const BlogPosts = mongoose.model("BlogPost", blogsSchema);
 
 module.exports = { BlogPosts };
