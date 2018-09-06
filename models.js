@@ -6,7 +6,7 @@ let authorSchema = mongoose.Schema({
 	firstName: "string",
 	lastName: "string",
 	userName: {
-		type: "string"
+		type: "string",
 		unique: true
 	}	
 });
@@ -31,7 +31,7 @@ blogPostSchema.pre("findOne", function(next){
 });
 
 blogPostSchema.virtual("authorName").get(function() {
-	return `${this.author.firstName} ${this.author.lastName}`trim();
+	return `${this.author.firstName} ${this.author.lastName}`.trim();
 });
 
 blogPostSchema.methods.serialize = function() {
@@ -44,9 +44,10 @@ blogPostSchema.methods.serialize = function() {
 	};
 };
 
-const Author = mongoose.model("Author", authorSchema);
-const BlogPosts = mongoose.model("BlogPosts", blogPostSchema);
+const Authors = mongoose.model("Author", authorSchema);
+const BlogPosts = mongoose.model("BlogPost", blogPostSchema);
 
-module.exports = {Author, BlogPosts};
+module.exports = {Authors, BlogPosts};
+
 
 
